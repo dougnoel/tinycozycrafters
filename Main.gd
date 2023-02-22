@@ -57,7 +57,7 @@ func _on_SlimeTimer_timeout():
 
 	# Add some randomness to the direction.
 	direction += rand_range(-PI / 4, PI / 4)
-	slime.rotation = direction
+#	slime.rotation = direction
 
 	# Choose the velocity for the mob.
 	var velocity = Vector2(rand_range(150.0, 250.0), 0.0)
