@@ -1,33 +1,32 @@
 extends Node
 export(PackedScene) var slime_scene
+var startPosition: Position2D
 var score
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
+#onready var level = get_node("Level 1")
+onready var player = get_node("Level 1").get_node("Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-
+	$Music.play_sound($Music/OpeningMusic)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
 
-
 func _on_Player_hit():
 	game_over()
 
 func game_over():
+	$Music.play_sound("GameOver")
 	$ScoreTimer.stop()
 	$SlimeTimer.stop()
 	$HUD.show_game_over()
 
 func new_game():
+	$Music.play_sound("PrairieMusic")
 	score = 0
-	$Player.start($StartPosition.position)
+	player.start()
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
@@ -60,8 +59,12 @@ func _on_SlimeTimer_timeout():
 #	slime.rotation = direction
 
 	# Choose the velocity for the mob.
-	var velocity = Vector2(rand_range(150.0, 250.0), 0.0)
+	var velocity = Vector2(rand_range(75.0, 125.0), 0.0)
 	slime.linear_velocity = velocity.rotated(direction)
 
 	# Spawn the mob by adding it to the Main scene.
 	add_child(slime)
+
+func _on_Music_finished():
+	if $Music.get_sound() == "GameOver":
+		$Music.play_sound("OpeningMusic")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://Monsters/Slimes/Blue Slime/slime_blue.png" type="Texture" id=1]
 [ext_resource path="res://Monsters/Slimes/Blue Slime/Blue Slime.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/TCCAnimatedSprite.tscn" type="PackedScene" id=3]
 
 [sub_resource type="AtlasTexture" id=30]
 atlas = ExtResource( 1 )
@@ -359,23 +360,25 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=70]
-radius = 14.0
-height = 4.0
+radius = 1.0
+height = 6.0
 
 [node name="Blue Slime" type="RigidBody2D" groups=["slimes"]]
+collision_layer = 4
+collision_mask = 17
 gravity_scale = 0.0
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 3, 3 )
+[node name="AnimatedSprite" parent="." instance=ExtResource( 3 )]
 frames = SubResource( 29 )
-animation = "death down"
+animation = "idle right"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -2 )
+position = Vector2( 0, 7 )
+rotation = 1.5708
 shape = SubResource( 70 )
 
 [node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]

@@ -1,17 +1,27 @@
 extends AnimatedSprite
 signal death_complete
-var facing = "right"
+signal attack_complete
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+enum Facing {
+	RIGHT,
+	LEFT,
+	UP,
+	DOWN,
+}
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass
+enum SpriteType {
+	LEFT_ONLY,
+	RIGHT_ONLY,
+	LEFT_AND_RIGHT,
+	LEFT_RIGHT_UP_AND_DOWN,
+}
+
+export(SpriteType) var sprite_type = SpriteType.LEFT_RIGHT_UP_AND_DOWN
+export(Facing) var initial_facing = Facing.RIGHT
+var facing = get_facing()
 
 func start():
-	facing = "right"
+	facing = get_facing()
 	animation = "idle right"
 	play()
 	
@@ -19,6 +29,12 @@ func update_movement_animation(velocity: Vector2):
 	var animation_name
 	
 	# Set the facing if it needs to change
+	if sprite_type == SpriteType.LEFT_RIGHT_UP_AND_DOWN:
+		if velocity.y > 0:
+			facing = "down"
+		elif velocity.y < 0:
+			facing = "up"
+	
 	if velocity.x > 0:
 		facing = "right"
 	elif velocity.x < 0:
@@ -32,12 +48,24 @@ func update_movement_animation(velocity: Vector2):
 	
 	# The space is added between the two items here so that we don't risk a typo somewhere else
 	animation = animation_name + " " + facing
-	print(animation)
 
 func death_animation():
 	animation = "death " + facing
+	
+func attack_animation():
+	animation = "attack " + facing
+	play()
 
 func _on_AnimatedSprite_animation_finished():
 	if "death" in animation:
-		stop()
+		play(animation, true) # Plays the animation in reverse so that the last frame is played again
+		stop() # Halts the animation. Doing this after playing in reverse prevents the character from "standing up".
 		emit_signal("death_complete")
+	if "attack" in animation:
+		stop()
+		emit_signal("attack_complete")
+
+func get_facing():
+	var face = Facing.keys()[initial_facing]
+	return face.to_lower()
+	

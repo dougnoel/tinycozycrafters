@@ -1,69 +1,55 @@
-extends Area2D
+extends KinematicBody2D
 signal hit
-var alive = true
-
-export var speed = 400 # How fast the player will move (pixels/sec).
+export var speed = 150 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 # Add this variable to hold the clicked position.
 var target = Vector2()
 var velocity = Vector2()
 var screenTouched = false
 
+enum State {
+	MOVE,
+	ATTACK,
+	DEAD,
+	IN_ANIMATION,
+}
+
+var state = State.MOVE
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	if not alive:
-		return
-	
-	if screenTouched:
-		velocity = Vector2()
-		# Move towards the target and stop when close.
-		if position.distance_to(target) > 10:
-			velocity = target - position
-		else:
-			screenTouched = false
-	else:
-		velocity = Vector2.ZERO # The player's movement vector.
-		if Input.is_action_pressed("move_right"):
-			velocity.x += 1
-		if Input.is_action_pressed("move_left"):
-			velocity.x -= 1
-		if Input.is_action_pressed("move_down"):
-			velocity.y += 1
-		if Input.is_action_pressed("move_up"):
-			velocity.y -= 1
-
-	if velocity.length() > 0:
-		velocity = velocity.normalized() * speed
-
-	position += velocity * delta
-	position.x = clamp(position.x, 0, screen_size.x)
-	position.y = clamp(position.y, 0, screen_size.y)
-
-	$AnimatedSprite.update_movement_animation(velocity)
+func _process(_delta):
+	match state:
+		State.DEAD, State.IN_ANIMATION:
+			return
+		State.MOVE:
+			move()
+		State.ATTACK:
+			attack()
 
 func _on_Player_body_entered(_body):
 	emit_signal("hit")
 	die()
 
 func die():
-	alive = false
+	state = State.DEAD
+	$SoundEffect.play_sound("Death")
 	$AnimatedSprite.death_animation()
 	# Must be deferred as we can't change physics properties on a physics callback.
 	$CollisionShape2D.set_deferred("disabled", true)
 
-func start(pos):
-	alive = true
+func start():
+	hide()
+	state = State.MOVE
 	$AnimatedSprite.start()
-	position = pos
+	position = Vector2(screen_size.x/2,screen_size.y/2)
 	# Initial target is the start position.
-	target = pos
+	target = position
 	show()
 	$CollisionShape2D.disabled = false
-	
 
 # Change the target whenever a touch event happens.
 func _input(event):
@@ -71,6 +57,45 @@ func _input(event):
 		target = event.position
 		screenTouched = true
 
+func process_player_input():
+		#Keyboard Input
+	velocity.x = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	velocity.y = Input.get_action_strength("move_down") - Input.get_action_strength("move_up")
+	
+	#Mouse/Touchscreen Input
+	if screenTouched:
+		# Move towards the target and stop when close.
+		if position.distance_to(target) > 10:
+			velocity = target - position
+		else:
+			screenTouched = false
+	
+	if Input.is_action_just_pressed("attack"):
+		state = State.ATTACK
 
-func _on_AnimatedSprite_death_complete():
-	hide() # Player disappears after being hit.
+## Prevents the Player from exiting the screen.
+##calculated based on the current screen size for use on different platforms.
+func clamp_player():
+	position.x = clamp(position.x, 0, screen_size.x)
+	position.y = clamp(position.y, 0, screen_size.y)
+	
+## We only want sounde effects playing once
+func _on_SoundEffect_finished():
+	$SoundEffect.stop()
+
+func move():
+	process_player_input() #Moving this so we can use the same code for mobs
+	
+	velocity = velocity.normalized() * speed
+	velocity = move_and_slide(velocity)
+	
+	clamp_player() #Prevent the Player from leaving the screen
+
+	$AnimatedSprite.update_movement_animation(velocity)
+
+func attack():
+	$AnimatedSprite.attack_animation()
+	state = State.IN_ANIMATION
+
+func _attack_complete():
+	state = State.MOVE
