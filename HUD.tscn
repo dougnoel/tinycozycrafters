@@ -1,48 +1,47 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://budydssjku45r"]
 
-[ext_resource path="res://assets/Fonts/IMMORTAL.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://HUD.gd" type="Script" id=2]
-[ext_resource path="res://PauseMenu.tscn" type="PackedScene" id=3]
-
-[sub_resource type="DynamicFont" id=1]
-font_data = ExtResource( 1 )
+[ext_resource type="Script" path="res://HUD.gd" id="1_nxiyq"]
+[ext_resource type="PackedScene" path="res://PauseMenu.tscn" id="3"]
 
 [node name="HUD" type="CanvasLayer"]
-script = ExtResource( 2 )
+script = ExtResource("1_nxiyq")
 
-[node name="PauseMenu" parent="." instance=ExtResource( 3 )]
+[node name="PauseMenu" parent="." instance=ExtResource("3")]
+layout_mode = 3
+anchors_preset = 15
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ScoreLabel" type="Label" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -512.0
-margin_right = 512.0
-margin_bottom = 80.0
-custom_fonts/font = SubResource( 1 )
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.0
+grow_horizontal = 2
 text = "0"
-align = 1
+horizontal_alignment = 1
 
 [node name="Message" type="Label" parent="."]
+anchors_preset = 14
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-margin_top = -40.0
-margin_bottom = 40.0
-custom_fonts/font = SubResource( 1 )
+offset_top = -13.0
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
 text = "Tiny Cozy Crafters"
-align = 1
-autowrap = true
+horizontal_alignment = 1
 
 [node name="StartButton" type="Button" parent="."]
+anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -78.0
-margin_top = -60.0
-margin_right = 78.0
-margin_bottom = -100.0
-custom_fonts/font = SubResource( 1 )
+offset_left = -78.0
+offset_top = -60.0
+offset_right = 78.0
+offset_bottom = -100.0
 text = "Start"
 
 [node name="MessageTimer" type="Timer" parent="."]

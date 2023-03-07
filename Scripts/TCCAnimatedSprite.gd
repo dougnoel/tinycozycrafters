@@ -1,4 +1,4 @@
-extends AnimatedSprite
+extends AnimatedSprite2D
 signal death_complete
 signal attack_complete
 
@@ -16,8 +16,8 @@ enum SpriteType {
 	LEFT_RIGHT_UP_AND_DOWN,
 }
 
-export(SpriteType) var sprite_type = SpriteType.LEFT_RIGHT_UP_AND_DOWN
-export(Facing) var initial_facing = Facing.RIGHT
+@export var sprite_type: SpriteType = SpriteType.LEFT_RIGHT_UP_AND_DOWN
+@export var initial_facing: Facing = Facing.RIGHT
 var facing = get_facing()
 
 func start():

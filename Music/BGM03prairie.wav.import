@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/BGM03prairie.wav-5cdae2b695a45cf2b98a11f663279b91.sample"
+type="AudioStreamWAV"
+uid="uid://cmhvuhvn2apqn"
+path="res://.godot/imported/BGM03prairie.wav-5cdae2b695a45cf2b98a11f663279b91.sample"
 
 [deps]
 
 source_file="res://Music/BGM03prairie.wav"
-dest_files=[ "res://.import/BGM03prairie.wav-5cdae2b695a45cf2b98a11f663279b91.sample" ]
+dest_files=["res://.godot/imported/BGM03prairie.wav-5cdae2b695a45cf2b98a11f663279b91.sample"]
 
 [params]
 

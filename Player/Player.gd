@@ -1,10 +1,9 @@
-extends KinematicBody2D
+extends CharacterBody2D
 signal hit
-export var speed = 150 # How fast the player will move (pixels/sec).
+@export var speed = 150 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 # Add this variable to hold the clicked position.
 var target = Vector2()
-var velocity = Vector2()
 var screenTouched = false
 
 enum State {
@@ -37,14 +36,14 @@ func _on_Player_body_entered(_body):
 func die():
 	state = State.DEAD
 	$SoundEffect.play_sound("Death")
-	$AnimatedSprite.death_animation()
+	$AnimatedSprite2D.death_animation()
 	# Must be deferred as we can't change physics properties on a physics callback.
 	$CollisionShape2D.set_deferred("disabled", true)
 
 func start():
 	hide()
 	state = State.MOVE
-	$AnimatedSprite.start()
+	$AnimatedSprite2D.start()
 	position = Vector2(screen_size.x/2,screen_size.y/2)
 	# Initial target is the start position.
 	target = position
@@ -87,14 +86,16 @@ func move():
 	process_player_input() #Moving this so we can use the same code for mobs
 	
 	velocity = velocity.normalized() * speed
-	velocity = move_and_slide(velocity)
+	set_velocity(velocity)
+	move_and_slide()
+	velocity = velocity
 	
 	clamp_player() #Prevent the Player from leaving the screen
 
-	$AnimatedSprite.update_movement_animation(velocity)
+	$AnimatedSprite2D.update_movement_animation(velocity)
 
 func attack():
-	$AnimatedSprite.attack_animation()
+	$AnimatedSprite2D.attack_animation()
 	state = State.IN_ANIMATION
 
 func _attack_complete():

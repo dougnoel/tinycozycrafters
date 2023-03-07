@@ -3,7 +3,7 @@
 extends AudioStreamPlayer
 var currentSoundName = ""
 
-func play_sound(var node):
+func play_sound(node):
 	if node is float:
 		play(node)
 	else:
@@ -11,7 +11,7 @@ func play_sound(var node):
 		play()
 
 ## Sets a sound 
-func set_sound(var node):
+func set_sound(node):
 	if node is String:
 		node = get_node(str(node))
 	set_stream(node.stream)

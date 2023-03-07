@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scripts/TCCAnimatedSprite.gd" type="Script" id=1]
 
-[node name="AnimatedSprite" type="AnimatedSprite"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D"]
 script = ExtResource( 1 )
 
 [connection signal="animation_finished" from="." to="." method="_on_AnimatedSprite_animation_finished"]

@@ -1,31 +1,32 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=11 format=3 uid="uid://cgraoagqhptu8"]
 
-[ext_resource path="res://Main.gd" type="Script" id=2]
-[ext_resource path="res://Monsters/Slimes/Blue Slime/Blue Slime.tscn" type="PackedScene" id=3]
-[ext_resource path="res://HUD.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Level 1.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/TCCAudioStreamPlayer.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Music/MS02gameover1NL.wav" type="AudioStream" id=8]
-[ext_resource path="res://Scenes/TCCSound.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Music/BGM03prairie.wav" type="AudioStream" id=10]
-[ext_resource path="res://Music/BGM01hero.wav" type="AudioStream" id=11]
+[ext_resource type="Script" path="res://Main.gd" id="2"]
+[ext_resource type="PackedScene" uid="uid://t8quyymriyku" path="res://Monsters/Slimes/Blue Slime/Blue Slime.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://budydssjku45r" path="res://HUD.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://cqta6ckskmj6v" path="res://Scenes/Level 1.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://Scenes/TCCAudioStreamPlayer.tscn" id="7"]
+[ext_resource type="AudioStream" uid="uid://dwfvvud5pakt3" path="res://Music/MS02gameover1NL.wav" id="8"]
+[ext_resource type="PackedScene" path="res://Scenes/TCCSound.tscn" id="9"]
+[ext_resource type="AudioStream" uid="uid://cmhvuhvn2apqn" path="res://Music/BGM03prairie.wav" id="10"]
+[ext_resource type="AudioStream" uid="uid://8imj786lkwp3" path="res://Music/BGM01hero.wav" id="11"]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="Curve2D" id="1"]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1010.35, 0, 0, 0, 0, 0, 1010.35, 586.667, 0, 0, 0, 0, 0, 586.667, 0, 0, 0, 0, 0, 0 )
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1010.35, 0, 0, 0, 0, 0, 1010.35, 586.667, 0, 0, 0, 0, 0, 586.667, 0, 0, 0, 0, 0, 0)
 }
+point_count = 7
 
 [node name="Main" type="Node"]
-script = ExtResource( 2 )
-slime_scene = ExtResource( 3 )
+script = ExtResource("2")
+slime_scene = ExtResource("3")
 
-[node name="Level 1" parent="." instance=ExtResource( 5 )]
+[node name="Level 1" parent="." instance=ExtResource("5")]
 
 [node name="SlimeTimer" type="Timer" parent="."]
 
 [node name="SlimePath" type="Path2D" parent="."]
-scale = Vector2( 0.292969, 0.3 )
-curve = SubResource( 1 )
+scale = Vector2(0.292969, 0.3)
+curve = SubResource("1")
 
 [node name="SlimeSpawnLocation" type="PathFollow2D" parent="SlimePath"]
 
@@ -35,19 +36,19 @@ curve = SubResource( 1 )
 wait_time = 2.0
 one_shot = true
 
-[node name="HUD" parent="." instance=ExtResource( 4 )]
+[node name="HUD" parent="." instance=ExtResource("4")]
 
-[node name="Music" parent="." instance=ExtResource( 7 )]
-pause_mode = 2
+[node name="Music" parent="." instance=ExtResource("7")]
+process_mode = 2
 
-[node name="OpeningMusic" parent="Music" instance=ExtResource( 9 )]
-stream = ExtResource( 11 )
+[node name="OpeningMusic" parent="Music" instance=ExtResource("9")]
+stream = ExtResource("11")
 
-[node name="PrairieMusic" parent="Music" instance=ExtResource( 9 )]
-stream = ExtResource( 10 )
+[node name="PrairieMusic" parent="Music" instance=ExtResource("9")]
+stream = ExtResource("10")
 
-[node name="GameOver" parent="Music" instance=ExtResource( 9 )]
-stream = ExtResource( 8 )
+[node name="GameOver" parent="Music" instance=ExtResource("9")]
+stream = ExtResource("8")
 
 [connection signal="timeout" from="SlimeTimer" to="." method="_on_SlimeTimer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_ScoreTimer_timeout"]

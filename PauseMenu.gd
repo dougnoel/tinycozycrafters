@@ -2,7 +2,7 @@ extends Control
 signal mute
 signal unmute
 
-var is_paused = false setget set_is_paused
+var is_paused = false : set = set_is_paused
 
 func _unhandled_input(event):
 	if event.is_action_pressed("pause"):

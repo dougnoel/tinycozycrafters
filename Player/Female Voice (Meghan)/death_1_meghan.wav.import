@@ -1,13 +1,14 @@
 [remap]
 
 importer="wav"
-type="AudioStreamSample"
-path="res://.import/death_1_meghan.wav-1aad5dc2a8aefc6341b39f44f994a7a3.sample"
+type="AudioStreamWAV"
+uid="uid://di725yx3ylnlt"
+path="res://.godot/imported/death_1_meghan.wav-1aad5dc2a8aefc6341b39f44f994a7a3.sample"
 
 [deps]
 
 source_file="res://Player/Female Voice (Meghan)/death_1_meghan.wav"
-dest_files=[ "res://.import/death_1_meghan.wav-1aad5dc2a8aefc6341b39f44f994a7a3.sample" ]
+dest_files=["res://.godot/imported/death_1_meghan.wav-1aad5dc2a8aefc6341b39f44f994a7a3.sample"]
 
 [params]
 
