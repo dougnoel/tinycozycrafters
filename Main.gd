@@ -1,9 +1,9 @@
 extends Node
-export(PackedScene) var slime_scene
-var startPosition: Position2D
+@export var slime_scene: PackedScene
+var startPosition: Marker2D
 var score
 #onready var level = get_node("Level 1")
-onready var player = get_node("Level 1").get_node("Player")
+@onready var player = get_node("Level 1").get_node("Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -42,11 +42,11 @@ func _on_StartTimer_timeout():
 
 func _on_SlimeTimer_timeout():
 	# Create a new instance of the Blue Slime scene.
-	var slime = slime_scene.instance()
+	var slime = slime_scene.instantiate()
 
 	# Choose a random location on Path2D.
 	var mob_spawn_location = get_node("SlimePath/SlimeSpawnLocation")
-	mob_spawn_location.offset = randi()
+	mob_spawn_location.set_progress(randi())
 
 	# Set the mob's direction perpendicular to the path direction.
 	var direction = mob_spawn_location.rotation + PI / 2
@@ -55,11 +55,11 @@ func _on_SlimeTimer_timeout():
 	slime.position = mob_spawn_location.position
 
 	# Add some randomness to the direction.
-	direction += rand_range(-PI / 4, PI / 4)
+	direction += randf_range(-PI / 4, PI / 4)
 #	slime.rotation = direction
 
 	# Choose the velocity for the mob.
-	var velocity = Vector2(rand_range(75.0, 125.0), 0.0)
+	var velocity = Vector2(randf_range(75.0, 125.0), 0.0)
 	slime.linear_velocity = velocity.rotated(direction)
 
 	# Spawn the mob by adding it to the Main scene.

@@ -1,6 +1,6 @@
 extends RigidBody2D
 var velocity = Vector2()
-onready var sprite = $AnimatedSprite
+@onready var sprite = $AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

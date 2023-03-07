@@ -1,0 +1,6 @@
+res://default_env.tres
+res://Main.tscn
+res://Player/Player.tscn
+res://Scenes/Level 1.tscn
+res://HUD.tscn
+res://Monsters/Slimes/Blue Slime/Blue Slime.tscn

@@ -1,0 +1,47 @@
+2a60927148abd1d33b818b535e306557
+::res://::1678028878
+default_env.tres::Environment::8213004956056240092::1677978324::0::1::::<><>::
+HUD.gd::GDScript::-1::1677693137::0::1::::<>CanvasLayer<>::
+HUD.tscn::PackedScene::3797854228573922785::1677730900::0::1::::<><>::res://HUD.gd<>res://PauseMenu.tscn
+icon.png::CompressedTexture2D::7527666486277419799::1676743213::1677693183::1::::<><>::
+Main.gd::GDScript::-1::1677694330::0::1::::<>Node<>::
+Main.tscn::PackedScene::5229093862153841021::1677978323::0::1::::<><>::res://Main.gd<>uid://t8quyymriyku<>uid://budydssjku45r<>uid://cqta6ckskmj6v<>res://Scenes/TCCAudioStreamPlayer.tscn<>uid://dwfvvud5pakt3<>res://Scenes/TCCSound.tscn<>uid://cmhvuhvn2apqn<>uid://8imj786lkwp3
+PauseMenu.gd::GDScript::-1::1677693137::0::1::::<>Control<>::
+PauseMenu.tscn::PackedScene::-1::1677693137::0::1::::<><>::res://PauseMenu.gd<>res://assets/Fonts/IMMORTAL.ttf
+::res://assets/::1677697116
+abstractplatformer.png::CompressedTexture2D::9180717208278966552::1676760887::1677693183::1::::<><>::
+Farm (Cozy Farm).png::CompressedTexture2D::7746308420043721132::1676746615::1677697116::1::::<><>::
+Summer Forest (Tiny Wonders).png::CompressedTexture2D::7657226043551950506::1676745889::1677697092::1::::<><>::
+TX Tileset Grass.png::CompressedTexture2D::6518719452739944097::1676747042::1677693283::1::::<><>::
+::res://assets/Fonts/::1677693183
+IMMORTAL.ttf::FontFile::4957458600319807329::1676863826::1677693183::1::::<><>::
+::res://Monsters/::1676783482
+::res://Monsters/Slimes/::1676783800
+::res://Monsters/Slimes/Blue Slime/::1677730900
+Blue Slime.gd::GDScript::-1::1677693137::0::1::::<>RigidBody2D<>::
+Blue Slime.tscn::PackedScene::1402720980972944024::1677730900::0::1::::<><>::uid://btjeksvtyde0e<>res://Monsters/Slimes/Blue Slime/Blue Slime.gd<>res://Scenes/TCCAnimatedSprite.tscn
+slime_blue.png::CompressedTexture2D::3738849817269032990::1676783789::1677693296::1::::<><>::
+::res://Music/::1677693185
+BGM01hero.wav::AudioStreamWAV::2333493271295255698::1677116040::1677693184::1::::<><>::
+BGM03prairie.wav::AudioStreamWAV::5630869308778306041::1677116051::1677693185::1::::<><>::
+MS02gameover1NL.wav::AudioStreamWAV::8715052114890949178::1677116789::1677693184::1::::<><>::
+::res://Player/::1677978324
+Player.gd::GDScript::-1::1677693834::0::1::::<>CharacterBody2D<>::
+Player.tscn::PackedScene::2429619650825780062::1677978324::0::1::::<><>::uid://c5sh2pc1icnwv<>res://Player/Player.gd<>res://Scenes/TCCAudioStreamPlayer.tscn<>uid://db5rbopir86wm<>res://Scenes/TCCAnimatedSprite.tscn<>res://Scenes/TCCSound.tscn<>uid://di725yx3ylnlt
+::res://Player/Female Voice (Meghan)/::1677693184
+death_1_meghan.wav::AudioStreamWAV::7788527118330933205::1677118321::1677693184::1::::<><>::
+::res://Player/Tiny Wonder Forest/::1677693329
+attack and die.png::CompressedTexture2D::7292416960896566604::1676762425::1677693326::1::::<><>::
+sword.png::CompressedTexture2D::3217211360994529141::1676762431::1677693183::1::::<><>::
+walk and idle.png::CompressedTexture2D::6916139503617014149::1676762411::1677693329::1::::<><>::
+::res://Scenes/::1677730900
+Level 1.tscn::PackedScene::5935141523859336343::1677730900::0::1::::<><>::uid://dhdhnnx0deggw<>uid://dimmtkr4a6y41<>res://Scenes/Tree1.tscn<>uid://bau6qlwsjvfgg
+TCCAnimatedSprite.tscn::PackedScene::-1::1677693137::0::1::::<><>::res://Scripts/TCCAnimatedSprite.gd
+TCCAudioStreamPlayer.tscn::PackedScene::-1::1677693137::0::1::::<><>::res://Scripts/TCCAudioStreamPlayer.gd
+TCCSound.tscn::PackedScene::-1::1677693137::0::1::::<><>::res://Scripts/TCCSound.gd
+Tree1.tres::AtlasTexture::-1::1677693137::0::1::::<><>::res://assets/Farm (Cozy Farm).png
+Tree1.tscn::PackedScene::-1::1677693137::0::1::::<><>::res://Scenes/Tree1.tres
+::res://Scripts/::1677621666
+TCCAnimatedSprite.gd::GDScript::-1::1677693137::0::1::::<>AnimatedSprite2D<>::
+TCCAudioStreamPlayer.gd::GDScript::-1::1677693137::0::1::::<>AudioStreamPlayer<>::
+TCCSound.gd::GDScript::-1::1677693137::0::1::::<>Node<>::
